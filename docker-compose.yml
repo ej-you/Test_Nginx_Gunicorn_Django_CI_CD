@@ -2,20 +2,6 @@ version: '3.8'
 
 
 services:
-  db:
-    image: mysql:8.2.0
-    container_name: hello_world_db
-    restart: always
-    env_file:
-      - .env
-#    volumes:
-#      - ./db_data_volume:/var/lib/mysql
-    ports:
-      - "33066:3306"
-    networks:
-      proj_network:
-        ipv4_address: 172.16.1.2
-
   backend:
     build:
       context: ./backend
@@ -30,9 +16,7 @@ services:
       - "8080:8080"
     networks:
       proj_network:
-        ipv4_address: 172.16.1.3
-    depends_on:
-      - db
+        ipv4_address: 172.16.1.2
 
   nginx:
     build:
@@ -45,7 +29,7 @@ services:
       - "80:80"
     networks:
       proj_network:
-        ipv4_address: 172.16.1.4
+        ipv4_address: 172.16.1.3
     depends_on:
       - backend
 

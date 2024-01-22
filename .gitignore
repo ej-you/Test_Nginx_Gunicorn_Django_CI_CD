@@ -2,9 +2,8 @@
 /.env
 
 # PyCharm
-/backend/Matrix/.idea/
+/backend/HelloWorld/.idea/
 /.idea
 
 # Docker volumes
 /static_archive_back/
-/db_data_volume/

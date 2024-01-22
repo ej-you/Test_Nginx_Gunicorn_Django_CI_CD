@@ -1,5 +1,5 @@
-/backend/Matrix/.idea
+/backend/HelloWorld/.idea
+/.idea
 
 /backend/DockerfileBackend
-/frontend/DockerfileFrontend
 /nginx/DockerfileNginx
