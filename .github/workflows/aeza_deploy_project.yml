@@ -28,16 +28,16 @@ jobs:
     steps:
       - name: Write Django Env
         run: |
-          echo "${{ secrets.SECRET_KEY }}" >> .env
-          echo "${{ env.DEBUG }}" >> .env
-          echo "${{ env.ALLOWED_HOSTS }}" >> .env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "DEBUG=${{ env.DEBUG }}" >> .env
+          echo "ALLOWED_HOSTS=${{ env.ALLOWED_HOSTS }}" >> .env
       - name: Write DB Env
         run: |
-          echo ${{ secrets.MYSQL_DATABASE }} >> ./.env
-          echo ${{ secrets.DB_USER }} >> ./.env
-          echo ${{ secrets.MYSQL_ROOT_PASSWORD }} >> ./.env
-          echo ${{ secrets.DB_HOST }} >> ./.env
-          echo ${{ secrets.PORT }} >> ./.env
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+          echo "DB_USER=${{ secrets.DB_USER }}" >> .env
+          echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
+          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
 
   build:
     runs-on: self-hosted
