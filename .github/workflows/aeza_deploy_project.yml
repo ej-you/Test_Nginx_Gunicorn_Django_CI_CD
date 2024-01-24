@@ -21,9 +21,9 @@ jobs:
     steps:
       - name: Write Django Env
         run: |
-          echo ${{ secrets.SECRET_KEY }} >> ./.env
-          echo ${{ env.DEBUG }} >> ./.env
-          echo ${{ env.ALLOWED_HOSTS }} >> ./.env
+          echo "${{ secrets.SECRET_KEY }}" >> .env
+          echo "${{ env.DEBUG }}" >> .env
+          echo "${{ env.ALLOWED_HOSTS }}" >> .env
       - name: Write DB Env
         run: |
           echo ${{ secrets.MYSQL_DATABASE }} >> ./.env
