@@ -3,3 +3,6 @@
 
 /backend/DockerfileBackend
 /nginx/DockerfileNginx
+
+/.github
+/.git

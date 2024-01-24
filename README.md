@@ -1,5 +1,9 @@
 # Test_Nginx_Gunicorn_Django_JS
 
+## Status of deployment:
+![](https://github.com/Danil-114195722/Test_Nginx_Gunicorn_Django_CI_CD/workflows/My-Project-CD/badge.svg?branch=master)
+<br>
+
 .env file must contain the next info:
 
 ```dotenv
