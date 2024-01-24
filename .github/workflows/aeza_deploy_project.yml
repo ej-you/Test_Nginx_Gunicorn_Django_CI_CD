@@ -26,11 +26,12 @@ jobs:
           echo "DEBUG=${{ env.DEBUG }}" >> .env
           echo "ALLOWED_HOSTS='${{ env.ALLOWED_HOSTS }}'" >> .env
       - name: Write DB Env
+#          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
         run: |
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
           echo "DB_USER=${{ secrets.DB_USER }}" >> .env
           echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
-          echo "DB_HOST=${{ secrets.DB_HOST }}" >> .env
+          echo "DB_HOST=172.16.1.2" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env
 
   build:
