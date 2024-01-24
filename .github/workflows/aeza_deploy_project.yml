@@ -41,7 +41,7 @@ jobs:
       - name: Deploy updated repo
         run: |
           docker-compose --file ./docker-compose.yml down
-          docker-compose --file ./docker-compose.yml up --build
+          docker-compose --file ./docker-compose.yml up --build -d
 
 #      - name: Remove old production
 #        run: |
