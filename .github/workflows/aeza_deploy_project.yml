@@ -39,11 +39,9 @@ jobs:
 
     steps:
       - name: Deploy updated repo
+        # в 3 строке удаляем все неименованные образы (т.е. те, что были до последней пересборки)
+        # in 3th string - deleting all unnamed images
         run: |
           docker-compose --file ./docker-compose.yml down
           docker-compose --file ./docker-compose.yml up --build -d
-
-#      - name: Remove old production
-#        run: |
-#          docker rmi test_nginx_gunicorn_django_ci_cd_nginx
-#          docker rmi test_nginx_gunicorn_django_ci_cd_backend
+          docker rmi $(docker images -f "dangling=true" -q)
