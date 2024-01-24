@@ -17,3 +17,8 @@ jobs:
           whoami
           pwd
           ls
+          echo
+      - name: Run Docker Tests
+        run: |
+          docker ps -a
+          docker images
