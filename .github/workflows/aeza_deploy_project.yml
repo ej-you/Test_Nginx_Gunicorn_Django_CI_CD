@@ -5,8 +5,15 @@ on:
     branches: [ "master" ]
 
 jobs:
+  checkout-repo:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+
   create-env:
     runs-on: self-hosted
+    needs: [ checkout-repo ]
 
     env:
       DEBUG: 'True'
@@ -34,16 +41,15 @@ jobs:
 
   build:
     runs-on: self-hosted
-    needs: [ create-env ]
+    needs: [ create-env, checkout-repo ]
 
     steps:
-      - uses: actions/checkout@v3
-
       - name: Run Tests
         run: |
           whoami
           groups
-          ls
+          echo
+          ls -la
           echo
       - name: Run Docker Tests
         run: |
