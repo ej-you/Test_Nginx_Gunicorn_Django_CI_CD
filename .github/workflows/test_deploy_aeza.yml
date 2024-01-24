@@ -1,4 +1,4 @@
-name: My-Projetc-CD
+name: My-Project-CD
 
 on:
   push:
@@ -9,7 +9,11 @@ jobs:
     runs-on: self-hosted
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Run Tests
-      run: echo "Hello from github-actions"
+      - name: Run Tests
+        run: |
+          echo "Hello from github-actions"
+          whoami
+          pwd
+          ls
