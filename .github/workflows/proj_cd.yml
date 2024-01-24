@@ -1,0 +1,26 @@
+name: Project-CD
+
+on:
+  push:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run Tests
+        run: |
+          whoami
+          groups
+          echo
+      - name: Run Docker Tests
+        run: |
+          docker ps -a
+          docker images
+      - name: Run Sudo Docker Tests
+        run: |
+          sudo docker ps -a
+          sudo docker images
