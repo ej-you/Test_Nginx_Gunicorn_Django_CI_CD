@@ -40,8 +40,8 @@ jobs:
     steps:
       - name: Deploy updated repo
         # в 3 строке удаляем все неименованные образы (т.е. те, что были до последней пересборки)
-        # in 3th string - deleting all unnamed images
+        # in 3th string - deleting all unnamed images (no error, if no unnamed images)
         run: |
           docker-compose --file ./docker-compose.yml down
           docker-compose --file ./docker-compose.yml up --build -d
-          docker rmi $(docker images -f "dangling=true" -q)
+          docker rmi $(docker images -f "dangling=true" -q) &> /dev/null
