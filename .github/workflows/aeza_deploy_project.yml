@@ -19,18 +19,12 @@ jobs:
       DEBUG: 'True'
       ALLOWED_HOSTS: '*'
 
-      MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
-      DB_USER: ${{ secrets.DB_USER }}
-      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
-      DB_HOST: ${{ secrets.DB_HOST }}
-      PORT: ${{ secrets.PORT }}
-
     steps:
       - name: Write Django Env
         run: |
-          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
+          echo "SECRET_KEY='${{ secrets.SECRET_KEY }}'" >> .env
           echo "DEBUG=${{ env.DEBUG }}" >> .env
-          echo "ALLOWED_HOSTS=${{ env.ALLOWED_HOSTS }}" >> .env
+          echo "ALLOWED_HOSTS='${{ env.ALLOWED_HOSTS }}'" >> .env
       - name: Write DB Env
         run: |
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
@@ -41,23 +35,14 @@ jobs:
 
   build:
     runs-on: self-hosted
-    needs: [ create-env, checkout-repo ]
+    needs: [ create-env ]
 
     steps:
-      - name: Run Tests
+      - name: Remove old production
         run: |
-          whoami
-          groups
-          echo
-          ls -la
-          echo
-      - name: Run Docker Tests
+          remove_images=$(docker-compose images -q)
+          docker-compose --file ./docker-compose.yml down
+          docker rmi $remove_images
+      - name: Deploy updated repo
         run: |
-          docker ps -a
-          docker images
-
-
-
-#docker-compose down
-#docker rmi test_nginx_gunicorn_django_ci_cd_nginx test_nginx_gunicorn_django_ci_cd_backend
-#docker-compose up --build -d
+          docker-compose --file ./docker-compose.yml up --build
