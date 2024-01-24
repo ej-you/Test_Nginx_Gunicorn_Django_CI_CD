@@ -31,7 +31,7 @@ jobs:
           echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
           echo "DB_USER=${{ secrets.DB_USER }}" >> .env
           echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
-          echo "DB_HOST=172.16.1.2" >> .env
+          echo "DB_HOST=172.17.0.1" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env
 
   build:
