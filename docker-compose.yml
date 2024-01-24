@@ -11,12 +11,12 @@ services:
     env_file:
       - .env
     volumes:
-      - ./static_archive_back:/static
+      - "test_nginx_gunicorn_django_ci_cd_staticfiles:/static"
     ports:
       - "8080:8080"
-#    networks:
-#      proj_network:
-#        ipv4_address: 172.16.1.2
+    networks:
+      proj_network:
+        ipv4_address: 172.16.1.2
 
   nginx:
     build:
@@ -24,19 +24,23 @@ services:
       dockerfile: DockerfileNginx
     container_name: hello_world_nginx
     volumes:
-      - ./static_archive_back:/static
+      - "test_nginx_gunicorn_django_ci_cd_staticfiles:/static"
     ports:
       - "80:80"
-#    networks:
-#      proj_network:
-#        ipv4_address: 172.16.1.3
+    networks:
+      proj_network:
+        ipv4_address: 172.16.1.3
     depends_on:
       - backend
 
 
-#networks:
-#  proj_network:
-#    driver: bridge
-#    ipam:
-#      config:
-#        - subnet: 172.16.1.0/24
+networks:
+  proj_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.16.1.0/24
+
+
+volumes:
+  test_nginx_gunicorn_django_ci_cd_staticfiles:

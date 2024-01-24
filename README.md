@@ -1,7 +1,8 @@
 # Test_Nginx_Gunicorn_Django_JS
 
 ## Status of deployment:
-![](https://github.com/Danil-114195722/Test_Nginx_Gunicorn_Django_CI_CD/workflows/My-Project-CD/badge.svg)
+[![All-Project-CD](https://github.com/Danil-114195722/Test_Nginx_Gunicorn_Django_CI_CD/actions/workflows/aeza_deploy_project.yml/badge.svg)](https://github.com/Danil-114195722/Test_Nginx_Gunicorn_Django_CI_CD/actions/workflows/aeza_deploy_project.yml)
+
 <br>
 
 .env file must contain the next info:
