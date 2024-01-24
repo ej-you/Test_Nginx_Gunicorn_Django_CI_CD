@@ -40,9 +40,9 @@ jobs:
     steps:
       - name: Remove old production
         run: |
-          remove_images=$(docker-compose images -q)
           docker-compose --file ./docker-compose.yml down
-          docker rmi $remove_images
+          docker rmi test_nginx_gunicorn_django_ci_cd_nginx
+          docker rmi test_nginx_gunicorn_django_ci_cd_backend
       - name: Deploy updated repo
         run: |
           docker-compose --file ./docker-compose.yml up --build
