@@ -5,8 +5,35 @@ on:
     branches: [ "master" ]
 
 jobs:
+  create-env:
+    runs-on: self-hosted
+
+    env:
+      DEBUG: 'True'
+      ALLOWED_HOSTS: '*'
+
+      MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+      DB_USER: ${{ secrets.DB_USER }}
+      MYSQL_ROOT_PASSWORD: ${{ secrets.MYSQL_ROOT_PASSWORD }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      PORT: ${{ secrets.PORT }}
+
+    steps:
+      - name: Write Django Env
+        run: |
+          touch .env
+          echo ${{ secrets.SECRET_KEY }} >> ./.env
+          echo ${{ env.DEBUG }} >> ./.env
+          echo ${{ env.ALLOWED_HOSTS }} >> ./.env
+          echo ${{ secrets.MYSQL_DATABASE }} >> ./.env
+          echo ${{ secrets.DB_USER }} >> ./.env
+          echo ${{ secrets.MYSQL_ROOT_PASSWORD }} >> ./.env
+          echo ${{ secrets.DB_HOST }} >> ./.env
+          echo ${{ secrets.PORT }} >> ./.env
+
   build:
     runs-on: self-hosted
+    needs: [ create-env ]
 
     steps:
       - uses: actions/checkout@v3
@@ -15,12 +42,15 @@ jobs:
         run: |
           whoami
           groups
+          ls
           echo
       - name: Run Docker Tests
         run: |
           docker ps -a
           docker images
-      - name: Run Sudo Docker Tests
-        run: |
-          sudo docker ps -a
-          sudo docker images
+
+
+
+#docker-compose down
+#docker rmi test_nginx_gunicorn_django_ci_cd_nginx test_nginx_gunicorn_django_ci_cd_backend
+#docker-compose up --build -d
