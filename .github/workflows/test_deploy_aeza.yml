@@ -13,12 +13,14 @@ jobs:
 
       - name: Run Tests
         run: |
-          echo "Hello from github-actions"
           whoami
-          pwd
-          ls
+          groups
           echo
       - name: Run Docker Tests
         run: |
           docker ps -a
           docker images
+      - name: Run Sudo Docker Tests
+        run: |
+          sudo docker ps -a
+          sudo docker images
