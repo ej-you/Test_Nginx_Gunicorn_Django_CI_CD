@@ -38,11 +38,12 @@ jobs:
     needs: [ create-env ]
 
     steps:
-      - name: Remove old production
-        run: |
-          docker-compose --file ./docker-compose.yml down
-          docker rmi test_nginx_gunicorn_django_ci_cd_nginx
-          docker rmi test_nginx_gunicorn_django_ci_cd_backend
       - name: Deploy updated repo
         run: |
+          docker-compose --file ./docker-compose.yml down
           docker-compose --file ./docker-compose.yml up --build
+
+#      - name: Remove old production
+#        run: |
+#          docker rmi test_nginx_gunicorn_django_ci_cd_nginx
+#          docker rmi test_nginx_gunicorn_django_ci_cd_backend
