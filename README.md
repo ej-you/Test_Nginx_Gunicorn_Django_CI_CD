@@ -1,6 +1,6 @@
 # Test_Nginx_Gunicorn_Django_JS
 
-.env file must contain the next info (template):
+.env file must contain the next info:
 
 ```dotenv
 # Ключ django
