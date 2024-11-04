@@ -1,7 +1,7 @@
-# Test_Nginx_Gunicorn_Django_JS
+# Test_Nginx_Gunicorn_Django_CI_CD
 
 ## Status of deployment:
-[![All-Project-CD](https://github.com/Danil-114195722/Test_Nginx_Gunicorn_Django_CI_CD/actions/workflows/aeza_deploy_project.yml/badge.svg)](https://github.com/Danil-114195722/Test_Nginx_Gunicorn_Django_CI_CD/actions/workflows/aeza_deploy_project.yml)
+[![All-Project-CD](https://github.com/ej-you/Test_Nginx_Gunicorn_Django_CI_CD/actions/workflows/aeza_deploy_project.yml/badge.svg)](https://github.com/ej-you/Test_Nginx_Gunicorn_Django_CI_CD/actions/workflows/aeza_deploy_project.yml)
 
 <br>
 
